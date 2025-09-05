@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yann Diarrassouba — Portfolio</title>
+  <meta name="description" content="Portfolio de Yann Diarrassouba — Projets, expériences, formation, compétences." />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0b0f16;--txt:#e5e7eb;--muted:#94a3b8;--brand:#0ea5e9;--accent:#22d3ee}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b0f16 0%,#0b1220 100%);color:var(--txt)}
+    html{scroll-behavior:smooth}
+    a{color:var(--txt);text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;backdrop-filter:saturate(160%) blur(8px);background:rgba(11,15,22,.65);border-bottom:1px solid rgba(148,163,184,.15);z-index:10}
+    nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800}
+    .brand:before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--accent));box-shadow:0 0 18px var(--brand)}
+    .links{display:flex;gap:16px;flex-wrap:wrap}
+    .links a{padding:8px 12px;border-radius:10px;border:1px solid transparent}
+    .links a:hover{border-color:rgba(148,163,184,.35);background:rgba(148,163,184,.08)}
+    .cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--brand),var(--accent));color:#031321;padding:10px 14px;border-radius:12px;font-weight:700;transition:filter .2s}
+    .cta:hover{filter:brightness(1.05)}
+    .btn{display:inline-flex;gap:8px;align-items:center;padding:10px 12px;border-radius:12px;cursor:pointer;border:1px solid rgba(148,163,184,.25);background:rgba(148,163,184,.06);color:var(--txt);appearance:none;-webkit-appearance:none;transition:background .2s,border-color .2s,transform .05s}
+    .btn:hover{background:rgba(148,163,184,.12);border-color:rgba(148,163,184,.35)}
+    .btn:active{transform:translateY(1px)}
+    .hero{display:grid;grid-template-columns:1fr;gap:20px;align-items:center;padding:64px 0;text-align:center;justify-items:center}
+    .hero h1{font-size:48px;line-height:1.05;margin:0 0 12px}
+    .hero p{color:var(--muted);font-size:18px;margin:0 0 24px;max-width:900px}
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0;justify-content:center}
+    .badge{border:1px solid rgba(148,163,184,.25);border-radius:999px;padding:6px 10px;font-size:12px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+    .col-4{grid-column:span 4}
+    .col-12{grid-column:span 12}
+    @media (max-width:900px){.col-4{grid-column:span 12}.hero h1{font-size:36px}}
+    h2{font-size:24px;margin:0 0 12px}
+    .section{padding:22px 0;scroll-margin-top:96px}
+    .projects .item{display:flex;flex-direction:column;gap:12px;background:linear-gradient(180deg,rgba(15,23,36,.9),rgba(11,15,22,.9));border:1px solid rgba(148,163,184,.15);border-radius:18px;padding:18px}
+    .projects .meta{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:14px}
+    .skills .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{display:inline-flex;align-items:center;padding:8px 12px;border-radius:12px;border:1px solid rgba(148,163,184,.2);color:var(--txt);background:rgba(148,163,184,.06)}
+    .timeline{display:flex;flex-direction:column;gap:12px}
+    .timeline .entry{display:grid;grid-template-columns:140px 1fr;gap:14px}
+    .timeline .when{color:var(--muted);font-size:13px}
+    .timeline .what{padding:14px;border-radius:14px;border:1px solid rgba(148,163,184,.15);background:rgba(148,163,184,.06)}
+    footer{color:var(--muted);padding:28px 0;border-top:1px solid rgba(148,163,184,.15);margin-top:24px}
+    #modal{position:fixed;inset:0;display:none;background:rgba(2,8,23,.6);backdrop-filter:blur(4px);align-items:center;justify-content:center;z-index:50}
+    #modal.visible{display:flex}
+    #modal .panel{max-width:720px;background:linear-gradient(180deg,rgba(15,23,36,.98),rgba(11,15,22,.98));border:1px solid rgba(148,163,184,.25);border-radius:16px;padding:20px}
+    .projects .meta{flex-wrap:wrap;gap:10px}
+    .projects .meta>strong{flex:1;min-width:200px}
+    @media (min-width:901px) and (max-width:1200px){.col-4{grid-column:span 6}}
+    @media (max-width:900px){
+      .container{padding:16px}
+      .links{gap:8px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+      .links a{padding:8px 10px}
+      .hero{padding:40px 0}
+      .hero h1{font-size:28px}
+      .hero p{font-size:15px}
+      .projects .item{padding:16px}
+      .badge,.chip{font-size:11px;padding:6px 8px}
+      .btn,.cta{padding:10px 12px;font-size:14px}
+      #modal .panel{width:min(92vw,700px)}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">Yann Diarrassouba</div>
+        <div class="links">
+          <a href="#projets">Projets</a>
+          <a href="#skills">Compétences</a>
+          <a href="#xp">Expériences</a>
+          <a href="#formation">Formation</a>
+          <a href="#lang">Langues</a>
+          <a href="#interets">Intérêts</a>
+          <a class="btn" id="dl-cv" href="#">CV (PDF)</a>
+          <a class="cta" id="github" href="https://github.com/YannMKD" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Développeur full-stack • Étudiant en BUT2 informatique</h1>
+      <p>Curieux, passionné par l’algorithmie et le développement, je conçois des applications web et des solutions logicielles tout en consolidant mes compétences académiques et professionnelles.</p>
+      <div class="badges">
+        <span class="badge">#Python</span><span class="badge">#Java</span><span class="badge">#JavaScript</span><span class="badge">#React</span><span class="badge">#Node</span><span class="badge">#SQL</span>
+      </div>
+      <div style="display:flex;gap:12px;justify-content:center">
+        <a class="cta" href="#projets">Voir mes projets</a>
+        <a class="btn" id="contact-mailto">Me contacter</a>
+        <a class="btn" id="linkedin" href="https://www.linkedin.com/in/yann-diarrassouba-440434349/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+
+    <section id="projets" class="section projects">
+      <h2>Projets sélectionnés</h2>
+      <p style="color:var(--muted);margin-top:4px">Quelques travaux représentatifs. Cliquez sur “Voir plus” pour le détail.</p>
+      <div class="grid" id="projects-grid"></div>
+    </section>
+
+    <section id="skills" class="section skills">
+      <h2>Compétences clés</h2>
+      <div class="chips" id="skills-chips"></div>
+    </section>
+
+    <section id="xp" class="section">
+      <h2>Expériences</h2>
+      <div class="timeline" id="timeline-xp"></div>
+    </section>
+
+    <section id="formation" class="section">
+      <h2>Formation</h2>
+      <div class="timeline" id="timeline-edu"></div>
+    </section>
+
+    <section id="lang" class="section">
+      <h2>Langues</h2>
+      <div class="chips">
+        <span class="chip">Français — langue maternelle</span>
+        <span class="chip">Anglais — B2 (maîtrise autonome)</span>
+      </div>
+    </section>
+
+    <section id="interets" class="section">
+      <h2>Centres d’intérêt</h2>
+      <ul style="margin:0;padding-left:18px;color:var(--muted)">
+        <li><strong>Sport :</strong> Ceinture noire de Taekwondo traditionnel ; Football (ex Régional 2)</li>
+        <li><strong>Musique :</strong> Bounce, Amapiano</li>
+        <li><strong>Lecture :</strong> Naoki Urasawa, Wole Soyinka</li>
+      </ul>
+    </section>
+  </main>
+
+  <div id="modal" aria-hidden="true">
+    <div class="panel">
+      <h3 id="modal-title">Titre du projet</h3>
+      <div id="modal-body">Description détaillée…</div>
+      <div style="display:flex;justify-content:flex-end;margin-top:12px"><button class="btn" onclick="closeModal()">Fermer</button></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>© <span id="year"></span> Yann Diarrassouba. Tous droits réservés.</div>
+      <div></div>
+    </div>
+  </footer>
+
+  <script>
+    const data = {
+      name: "Yann Diarrassouba",
+      email: "yanndiarrassouba@gmail.com",
+      github: "https://github.com/YannMKD",
+      cv: "cv-yann-diarrassouba.pdf",
+      skills: [
+        "JavaScript (React, Node)","Python (Pandas, Matplotlib)","Java / R",
+        "SQL (PostgreSQL), MCD/MLD, UML","Power BI / Data Viz","Linux & Bash",
+        "Git / GitHub","Klaxoon (gestion de projet)","Bureautique (Excel, Word)"
+      ],
+      projects: [
+        {
+          title: "KEYboard — Plateforme web communautaire",
+          desc: "Mise en place d’une plateforme web communautaire sur le thème du jeu vidéo, en PHP MVC avec une base de données pensée à partir d’un MEA.",
+          tags: ["PostgreSQL","HTML/CSS","JavaScript","PHP (MVC)"],
+          details: `Développement d’une plateforme web communautaire pour les passionnés de jeux vidéo, réalisée en PHP (MVC) avec une base de données MEA. Elle propose l’authentification des utilisateurs, la création de listes, la notation des jeux et un système de commentaires.`
+        },
+        {
+          title:"Application éducative ",
+          desc:"Développement d'une appli web éducative en équipe : frontend responsive, interactions et pages dynamiques.",
+          tags:["HTML/CSS","JavaScript"],
+          details:`Implémentation de fonctionnalités front-end et back-end pour une plateforme e-learning, avec automatisation des tests et du déploiement. Côté front : écrans, navigation, formulaires, gestion des états. Côté back : routes/CRUD, validations et persistance des données.`
+        },
+        {
+          title:"Acquisition de données 6G",
+          desc:"Scraping périodique de brevets 6G",
+          tags:["Python","Automatisation","Power BI"],
+          details:`Collecte et stockage automatisés de données issues de brevets sur la 6G, avec génération périodique d’un fichier CSV structuré. Mise en place d’un dashboard interactif pour la visualisation et l’analyse des résultats. Rôle : chef d’équipe de 5 étudiants.`
+        },
+        {
+          title:"Enquête — Devenir des étudiants",
+          desc:"Questionnaire, analyse statistique (Pandas/Matplotlib) et restitution pour le Hcéres.",
+          tags:["Python","Data","Méthodologie"],
+          details:`Réalisation et diffusion d’un questionnaire auprès des premières promotions sortantes du BUT (IUT de Villetaneuse). Nettoyage et analyse des données avec Python (Pandas) et visualisations (Matplotlib) pour faire ressortir les tendances. Rédaction de la synthèse en vu de la transmission au Haut Conseil de l’évaluation de la recherche et de l’enseignement supérieur (Hcéres). Rôle : membre d’un trinôme.`
+        },
+        {
+          title:"Nuit de l'Info 2024 — Océan & Corps humain",
+          desc:"Site de sensibilisation (équipe de 14) reliant océans et physiologie humaine.",
+          tags:["HTML/CSS","Travail d'équipe"],
+          details:`Conception et réalisation d’un site illustrant les similitudes entre le corps humain et l’océan afin de sensibiliser à la préservation des milieux marins. Équipe de 14 membres.`
+        }
+      ],
+      xp: [
+        {when:"07–08/2025", what:"Stage dev full-stack — E-petitpas.pro : fonctionnalités front & back pour une plateforme e-learning, tests & déploiements."},
+        {when:"06–09/2024", what:"Manutention — Heppner : emballage/filmage de matériel pharmaceutique (JO & Paralympiques)."},
+        {when:"Été 2022 & 2023", what:"Monteur polyvalent — Aratice : poses et réglages (PC, vidéoprojecteurs, TNI)."}
+      ],
+      edu: [
+        {when:"Depuis 10/2024", what:"BUT2 Technologie de l'information — IUT Villetaneuse (USPN)."},
+        {when:"2023/2024", what:"Licence 2 de Mathématiques — Institut Galilée."},
+        {when:"2020–2022", what:"CPGE Physique-Chimie — Lycée Gustave Monod."},
+        {when:"2020", what:"Bac Scientifique — mention Bien, Lycée Edmond Rostand."}
+      ]
+    };
+
+    document.getElementById('github').href = data.github;
+    document.getElementById('dl-cv').href = data.cv;
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const subject = encodeURIComponent('Contact — ' + data.name);
+    const body = encodeURIComponent('Bonjour Yann,\n\n');
+    document.getElementById('contact-mailto').href = `mailto:${data.email}?subject=${subject}&body=${body}`;
+
+    const grid = document.getElementById('projects-grid');
+    data.projects.forEach((p,i)=>{
+      const el = document.createElement('article');
+      el.className = 'item col-4';
+      el.innerHTML = `
+        <div class='meta'>
+          <strong>${p.title}</strong>
+          <div><button class='btn' onclick='openModal(${i})'>Voir plus</button></div>
+        </div>
+        <p style='color:var(--muted)'>${p.desc}</p>
+        <div class='badges'>${p.tags.map(t=>`<span class='badge'>${t}</span>`).join('')}</div>
+      `;
+      grid.appendChild(el);
+    });
+
+    const chips = document.getElementById('skills-chips');
+    data.skills.forEach(s=>{
+      const c = document.createElement('span'); c.className='chip'; c.textContent=s; chips.appendChild(c);
+    });
+
+    const tlx = document.getElementById('timeline-xp');
+    data.xp.forEach(e=>{
+      const row = document.createElement('div'); row.className='entry';
+      row.innerHTML = `<div class='when'>${e.when}</div><div class='what'>${e.what}</div>`; tlx.appendChild(row);
+    });
+    const tle = document.getElementById('timeline-edu');
+    data.edu.forEach(e=>{
+      const row = document.createElement('div'); row.className='entry';
+      row.innerHTML = `<div class='when'>${e.when}</div><div class='what'>${e.what}</div>`; tle.appendChild(row);
+    });
+
+    const modal = document.getElementById('modal');
+    function openModal(i){
+      const p = data.projects[i];
+      document.getElementById('modal-title').textContent = p.title;
+      document.getElementById('modal-body').textContent = p.details || p.desc;
+      modal.classList.add('visible');
+    }
+    function closeModal(){ modal.classList.remove('visible'); }
+    window.openModal = openModal; window.closeModal = closeModal;
+  </script>
+</body>
+</html>
